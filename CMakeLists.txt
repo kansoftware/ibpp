@@ -53,7 +53,7 @@ set( CPACK_PACKAGE_VERSION_MINOR ${PROJECT_VERSION_MINOR})
 set( CPACK_PACKAGE_VERSION_PATCH ${PROJECT_VERSION_PATCH})
 #set( CPACK_DEBIAN_PACKAGE_DEPENDS " ... deps none ... ")
 set( CPACK_PACKAGE_DESCRIPTION "IBPP, where the 'PP' stands for '++', is a C ++ client interface for Firebird SQL")
-set( CPACK_PACKAGE_CONTACT "Andy KAN kan@mail.ru")
+set( CPACK_PACKAGE_CONTACT "Andrew KAN kan@kansoftware.ru")
 #set( CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "${CMAKE_CURRENT_SOURCE_DIR}/Debian/postinst")
 
 include( CPack)
