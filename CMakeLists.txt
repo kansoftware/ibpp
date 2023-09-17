@@ -1,37 +1,38 @@
-cmake_minimum_required( VERSION 3.7 )
-project( ibpp VERSION "0.0.1" )
+cmake_minimum_required( VERSION 3.7)
+project( ibpp VERSION 0.0.1)
+
+option( USER_PEDANT "Show me lots of warrnings" OFF)
 
 set( CMAKE_CXX_STANDARD 11)
-set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m64 -Wall -pedantic -Wextra -Wlogical-op -Wconversion -Wno-unused-parameter -Wsuggest-attribute=noreturn -Wsuggest-override -Wold-style-cast" )
-
 set( CMAKE_CXX_FLAGS_RELEASE "-g0 -DNDEBUG -Ofast")
-set( CMAKE_CXX_FLAGS_DEBUG "-g -DDEBUG -O")
+set( CMAKE_CXX_FLAGS_DEBUG "-g -DDEBUG -Og")
 
-if (WIN32)
-    add_definitions( -DIBPP_WINDOWS )
-endif (WIN32)
+if( USER_PEDANT)
+    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pedantic -Wextra -Wlogical-op -Wconversion -Wno-unused-parameter -Wsuggest-attribute=noreturn -Wsuggest-override -Wold-style-cast")
+endif()
 
-if (UNIX)
-    add_definitions( -DIBPP_LINUX )
-endif (UNIX)
 
-if (MSVC)
-    add_definitions( -DIBPP_WINDOWS )
-endif (MSVC)
+if( WIN32)
+    add_definitions( -DIBPP_WINDOWS)
+endif()
+
+if( UNIX)
+    add_definitions( -DIBPP_LINUX)
+endif()
+
+if( MSVC)
+    add_definitions( -DIBPP_WINDOWS)
+endif()
 
 if( APPLE)
-    add_definitions( -DIBPP_DARWIN )
-endif (APPLE)
+    add_definitions( -DIBPP_DARWIN)
+endif()
 
 
-file( GLOB _SRC
-    "source/*.cpp"
-)
-
-add_library( ${PROJECT_NAME} SHARED ${_SRC}) # STATIC
+file( GLOB _SRC "source/*.cpp")
+add_library( ${PROJECT_NAME} SHARED ${_SRC})
 
 target_include_directories( ${PROJECT_NAME} PUBLIC include)
-
 #target_link_libraries(${PROJECT_NAME} " ... deps none ... ")
 
 set_target_properties( ${PROJECT_NAME} PROPERTIES
